@@ -14,7 +14,16 @@ my @known_commands = (
   [ 'cygwin', 'start'],
   [ 'MSWin32', 'start'],
   [ 'linux', 'xdg-open'],
+  [ 'linux', 'htmlview'],
+#  [ 'linux', 'gnome-open'], ## Gnome
+#  [ 'linux', 'kfmclient'], ## KDE
+#  [ 'linux', 'exo-open'],  ## XFCE
   [ 'linux', 'firefox'],
+  [ 'linux', 'seamonkey'],
+  [ 'linux', 'opera'],
+  [ 'linux', 'mozilla'],
+  [ 'linux', 'netscape'],
+  [ 'linux', 'galeon'],
   [ '*', 'open'],
   [ '*', 'start'],
 );
