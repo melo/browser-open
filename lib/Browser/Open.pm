@@ -13,6 +13,8 @@ my @known_commands = (
   [ 'darwin', '/usr/bin/open', 1 ],
   [ 'cygwin', 'start'],
   [ 'MSWin32', 'start'],
+  [ 'solaris', 'xdg-open'],
+  [ 'solaris', 'firefox'],
   [ 'linux', 'xdg-open'],
   [ 'linux', 'htmlview'],
 #  [ 'linux', 'gnome-open'], ## Gnome
