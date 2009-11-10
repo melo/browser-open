@@ -37,10 +37,10 @@ my @known_commands = (
 ##################################
 
 sub open_browser {
-  my $url = shift;
+  my ($url, $all) = @_;
   croak('Missing required parameter $url, ') unless $url;
+  my $cmd = $all ? open_browser_cmd_all() : open_browser_cmd();
   
-  my $cmd = open_browser_cmd();
   return unless $cmd;
   
   return system($cmd, $url);
