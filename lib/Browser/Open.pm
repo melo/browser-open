@@ -7,7 +7,11 @@ use File::Spec::Functions qw( catfile );
 
 use parent 'Exporter';
 
-@Browser::Open::EXPORT_OK = qw( open_browser open_browser_cmd );
+@Browser::Open::EXPORT_OK = qw(
+  open_browser
+  open_browser_cmd
+  open_browser_cmd_all
+);
 
 my @known_commands = (
   [ 'darwin', '/usr/bin/open', 1 ],
@@ -43,19 +47,30 @@ sub open_browser {
 }
 
 sub open_browser_cmd {
+  return _check_all_cmds($^O);
+}
+
+sub open_browser_cmd_all {
+  return _check_all_cmds('');
+}
+
+
+##################################
+
+sub _check_all_cmds {
+  my ($filter) = @_;
+
   foreach my $spec (@known_commands) {
     my ($osname, $cmd, $exact) = @$spec;
-    next unless $osname eq $^O;
     
+    next unless $cmd;
+    next if $osname && $filter && $osname ne $filter;
     return $cmd if $exact && -x $cmd;
     $cmd = _search_in_path($cmd);
     return $cmd if $cmd;
   }
   return;  
 }
-
-
-##################################
 
 sub _search_in_path {
   my $cmd = shift;
