@@ -83,7 +83,6 @@ sub _search_in_path {
   return;
 }
 
-sub _known_commands { return @known_commands }
 
 1;
 __END__
