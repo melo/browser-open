@@ -1,5 +1,10 @@
 Revision history for Browser-Open
 
+0.03     Mon Nov  9 23:52:13 UTC 2009
+       - Fixed tests to work better in case no command is found
+       - added more commands, courtesy of the App::SD::CLI::Command::Browser
+       - added a `open_browser_cmd_all()`
+
 0.02     Sat Oct 17 12:24:03 UTC 2009
        - added a bunch of alternatives for Linux
 
