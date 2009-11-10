@@ -47,10 +47,10 @@ my @known_commands = (
 sub open_browser {
   my ($url, $all) = @_;
   croak('Missing required parameter $url, ') unless $url;
+
   my $cmd = $all ? open_browser_cmd_all() : open_browser_cmd();
-  
   return unless $cmd;
-  
+
   return system($cmd, $url);
 }
 
@@ -70,19 +70,19 @@ sub _check_all_cmds {
 
   foreach my $spec (@known_commands) {
     my ($osname, $cmd, $exact) = @$spec;
-    
     next unless $cmd;
     next if $osname && $filter && $osname ne $filter;
+
     return $cmd if $exact && -x $cmd;
     $cmd = _search_in_path($cmd);
     return $cmd if $cmd;
   }
-  return;  
+  return;
 }
 
 sub _search_in_path {
   my $cmd = shift;
-  
+
   for my $path (split(/:/, $ENV{PATH})) {
     next unless $path;
     my $file = catfile($path, $cmd);
