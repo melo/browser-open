@@ -14,24 +14,32 @@ use parent 'Exporter';
 );
 
 my @known_commands = (
-  [ 'darwin', '/usr/bin/open', 1 ],
-  [ 'cygwin', 'start'],
-  [ 'MSWin32', 'start'],
-  [ 'solaris', 'xdg-open'],
-  [ 'solaris', 'firefox'],
-  [ 'linux', 'xdg-open'],
-  [ 'linux', 'htmlview'],
-#  [ 'linux', 'gnome-open'], ## Gnome
-#  [ 'linux', 'kfmclient'], ## KDE
-#  [ 'linux', 'exo-open'],  ## XFCE
-  [ 'linux', 'firefox'],
-  [ 'linux', 'seamonkey'],
-  [ 'linux', 'opera'],
-  [ 'linux', 'mozilla'],
-  [ 'linux', 'netscape'],
-  [ 'linux', 'galeon'],
-  [ '*', 'open'],
-  [ '*', 'start'],
+  ['', $ENV{BROWSER}],
+  ['darwin',  '/usr/bin/open', 1],
+  ['cygwin',  'start'],
+  ['MSWin32', 'start'],
+  ['solaris', 'xdg-open'],
+  ['solaris', 'firefox'],
+  ['linux',   'xdg-open'],
+  ['linux',   'x-www-browser'],
+  ['linux',   'www-browser'],
+  ['linux',   'htmlview'],
+  ['linux',   'gnome-open'],
+  ['linux',   'gnome-moz-remote'],
+  ['linux',   'kfmclient'],
+  ['linux',   'exo-open'],
+  ['linux',   'firefox'],
+  ['linux',   'seamonkey'],
+  ['linux',   'opera'],
+  ['linux',   'mozilla'],
+  ['linux',   'iceweasel'],
+  ['linux',   'netscape'],
+  ['linux',   'galeon'],
+  ['linux',   'opera'],
+  ['linux',   'w3m'],
+  ['linux',   'lynx'],
+  ['',        'open'],
+  ['',        'start'],
 );
 
 ##################################
