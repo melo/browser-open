@@ -99,27 +99,34 @@ __END__
 
 Browser::Open - open a browser in a given URL
 
+
 =head1 SYNOPSIS
 
     use Browser::Open qw( open_browser );
-
+    
+    ### Try commands specific to the current Operating System
     my $ok = open_browser($url);
     # ! defined($ok): no recognized command found
     # $ok == 0: command found and executed
     # $ok != 0: command found, error while executing
+    
+    ### Try all known commands
+    my $ok = open_browser($url, 1);
+
 
 =head1 DESCRIPTION
 
 The functions optionaly exported by this module allows you to open URLs
 in the user browser.
 
-A set of known commands is tested for presence, and the first one found
-is executed.
+A set of known commands per OS-name is tested for presence, and the
+first one found is executed. With an optional parameter, all known
+commands are checked.
 
-The L<"open_browser"> uses the L<perlfunc/"system"> function to execute
-the command. If you want more control, you can get the command with the
-L<"open_browser_cmd"> function and then use whatever method you want to
-execute it.
+The L<"open_browser"> uses the C<system()> function to execute the
+command. If you want more control, you can get the command with the
+L<"open_browser_cmd"> or L<"open_browser_cmd_all"> functions and then
+use whatever method you want to execute it.
 
 
 =head1 API
@@ -130,13 +137,17 @@ explicitly.
 
 =head2 open_browser
 
-    my $ok = open_browser($url);
+    my $ok = open_browser($url, $all);
 
-Find an appropriate command and executes it with your C<$url>.
+Find an appropriate command and executes it with your C<$url>. If
+C<$all> is false, the default, only commands that match the current OS
+will be tested. If true, all known commands will be tested.
 
 If no command was found, returns C<undef>.
 
-If a command is found, returns the exit code of the command.
+If a command is found, returns the exit code of the execution attempt, 0
+for success. See the C<system()> for more information about this
+exit code.
 
 If no C<$url> is given, an exception will be thrown:
 C<< Missing required parameter $url >>.
@@ -147,6 +158,15 @@ C<< Missing required parameter $url >>.
     my $cmd = open_browser_cmd();
 
 Returns the best command found to open a URL on your system.
+
+If no command was found, returns C<undef>.
+
+
+=head2 open_browser_cmd_all
+
+    my $cmd = open_browser_cmd_all();
+
+Returns the first command found to open a URL.
 
 If no command was found, returns C<undef>.
 
