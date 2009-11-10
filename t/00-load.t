@@ -3,7 +3,8 @@
 use strict;
 use warnings;
 use Test::More;
+use Browser::Open;
 
-use_ok('Browser::Open');
+pass("Compiled Browser::Open $INC{'Browser/Open.pm'}, version $Browser::Open::VERSION");
 
 done_testing();
