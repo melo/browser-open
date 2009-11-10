@@ -76,6 +76,7 @@ sub _search_in_path {
   my $cmd = shift;
   
   for my $path (split(/:/, $ENV{PATH})) {
+    next unless $path;
     my $file = catfile($path, $cmd);
     return $file if -x $file;
   }
